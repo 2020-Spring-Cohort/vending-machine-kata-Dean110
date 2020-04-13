@@ -42,4 +42,11 @@ public class CoinSlotImplTest {
         List<String> coinReturnContents = testCoinReturn.getContents();
         assertThat(coinReturnContents).containsExactlyInAnyOrder(SLUG, SLUG);
     }
+
+    @Test
+    public void nickelChangesDisplayCoinValue() {
+        underTest.acceptCoin("NICKEL");
+        String displayText = testDisplay.getDisplayMessage();
+        assertThat(displayText).isEqualTo("0.05");
+    }
 }

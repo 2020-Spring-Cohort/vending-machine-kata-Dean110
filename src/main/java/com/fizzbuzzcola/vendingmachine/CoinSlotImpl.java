@@ -1,12 +1,14 @@
 package com.fizzbuzzcola.vendingmachine;
 
 public class CoinSlotImpl implements CoinSlot {
-    public CoinSlotImpl(CoinReturn coinReturn) {
+    private final CoinReturn coinReturn;
 
+    public CoinSlotImpl(CoinReturn coinReturn) {
+        this.coinReturn = coinReturn;
     }
 
     @Override
     public void acceptCoin(String coin) {
-
+        coinReturn.addCoin(coin);
     }
 }

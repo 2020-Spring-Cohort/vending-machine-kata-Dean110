@@ -34,7 +34,7 @@ public class CoinSlotImplTest {
         List<String> coinReturnContents = testCoinReturn.getContents();
         assertThat(coinReturnContents).containsExactly(SLUG);
     }
-    @Disabled
+
     @Test
     public void invalidCoinsAreReturnedToTheCoinReturn(){
         underTest.acceptCoin(SLUG);

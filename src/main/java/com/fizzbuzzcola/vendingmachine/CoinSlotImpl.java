@@ -30,9 +30,9 @@ public class CoinSlotImpl implements CoinSlot{
 
     private void setCoinValues() {
         coinValues = Map.of(
-                "NICKEL", new BigDecimal("0.05"),
-                "DIME", new BigDecimal("0.10"),
-                "QUARTER", new BigDecimal("0.25")
+                NICKEL, new BigDecimal("0.05"),
+                DIME, new BigDecimal("0.10"),
+                QUARTER, new BigDecimal("0.25")
         );
     }
 

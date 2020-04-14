@@ -1,14 +1,13 @@
 package com.fizzbuzzcola.vendingmachine;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CoinSlotImplTest {
+public class CoinSlotImplTest{
 
     public static final String INSERT_COIN_MESSAGE = "INSERT COIN";
     public static final String SLUG = "SLUG";
@@ -17,7 +16,7 @@ public class CoinSlotImplTest {
     private CoinReturn testCoinReturn;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         testCoinReturn = new CoinReturnImpl();
         underTest = new CoinSlotImpl(testCoinReturn);
         testDisplay = new DisplayImpl(underTest);
@@ -28,15 +27,16 @@ public class CoinSlotImplTest {
         String displayText = testDisplay.getDisplayMessage();
         assertThat(displayText).isEqualTo(INSERT_COIN_MESSAGE);
     }
+
     @Test
-    public void invalidCoinIsReturnedToTheCoinReturn(){
+    public void invalidCoinIsReturnedToTheCoinReturn() {
         underTest.acceptCoin(SLUG);
         List<String> coinReturnContents = testCoinReturn.getContents();
         assertThat(coinReturnContents).containsExactly(SLUG);
     }
 
     @Test
-    public void invalidCoinsAreReturnedToTheCoinReturn(){
+    public void invalidCoinsAreReturnedToTheCoinReturn() {
         underTest.acceptCoin(SLUG);
         underTest.acceptCoin(SLUG);
         List<String> coinReturnContents = testCoinReturn.getContents();
@@ -51,7 +51,7 @@ public class CoinSlotImplTest {
     }
 
     @Test
-    public void dimeChangesDisplayedToCoinValue(){
+    public void dimeChangesDisplayedToCoinValue() {
         underTest.acceptCoin("DIME");
         String displayText = testDisplay.getDisplayMessage();
         assertThat(displayText).isEqualTo("0.10");

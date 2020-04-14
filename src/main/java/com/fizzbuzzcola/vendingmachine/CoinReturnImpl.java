@@ -3,10 +3,10 @@ package com.fizzbuzzcola.vendingmachine;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoinReturnImpl implements CoinReturn {
-    private List<String> contents;
+public class CoinReturnImpl implements CoinReturn{
+    private final List<String> contents;
 
-    public CoinReturnImpl(){
+    public CoinReturnImpl() {
         contents = new ArrayList<>();
     }
 

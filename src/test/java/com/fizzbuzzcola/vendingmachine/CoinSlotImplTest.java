@@ -7,6 +7,7 @@ import java.util.List;
 
 import static com.fizzbuzzcola.vendingmachine.CoinSlot.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CoinSlotImplTest{
 
@@ -15,6 +16,13 @@ public class CoinSlotImplTest{
     private CoinSlot underTest;
     private Display testDisplay;
     private CoinReturn testCoinReturn;
+
+    private void assertSingleCoinValuesAreDisplayed(String insertedCoin, String expectedDisplayText) {
+        setup();
+        underTest.acceptCoin(insertedCoin);
+        String displayText = testDisplay.getDisplayMessage();
+        assertThat(displayText).isEqualTo(expectedDisplayText);
+    }
 
     @BeforeEach
     public void setup() {
@@ -45,25 +53,14 @@ public class CoinSlotImplTest{
     }
 
     @Test
-    public void nickelChangesDisplayCoinValue() {
-        underTest.acceptCoin(NICKEL);
-        String displayText = testDisplay.getDisplayMessage();
-        assertThat(displayText).isEqualTo("0.05");
+    public void coinValuesAreDisplayedWhenSingleCoinsAreInserted() {
+        assertAll(
+                ()-> assertSingleCoinValuesAreDisplayed(NICKEL, "0.05"),
+                ()-> assertSingleCoinValuesAreDisplayed(DIME, "0.10"),
+                ()-> assertSingleCoinValuesAreDisplayed(QUARTER, "0.25")
+        );
     }
 
-    @Test
-    public void dimeChangesDisplayedToCoinValue() {
-        underTest.acceptCoin(DIME);
-        String displayText = testDisplay.getDisplayMessage();
-        assertThat(displayText).isEqualTo("0.10");
-    }
-
-    @Test
-    public void quarterChangesDisplayToCoinValue(){
-        underTest.acceptCoin(QUARTER);
-        String displayText = testDisplay.getDisplayMessage();
-        assertThat(displayText).isEqualTo("0.25");
-    }
     @Test
     public void twoQuartersOneDimeAndOneNickelShouldDisplayCorrectTotal(){
         underTest.acceptCoin(QUARTER);

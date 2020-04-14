@@ -49,4 +49,11 @@ public class CoinSlotImplTest {
         String displayText = testDisplay.getDisplayMessage();
         assertThat(displayText).isEqualTo("0.05");
     }
+
+    @Test
+    public void dimeChangesDisplayedToCoinValue(){
+        underTest.acceptCoin("DIME");
+        String displayText = testDisplay.getDisplayMessage();
+        assertThat(displayText).isEqualTo("0.10");
+    }
 }

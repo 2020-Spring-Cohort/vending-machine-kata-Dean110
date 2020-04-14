@@ -56,4 +56,20 @@ public class CoinSlotImplTest{
         String displayText = testDisplay.getDisplayMessage();
         assertThat(displayText).isEqualTo("0.10");
     }
+
+    @Test
+    public void quarterChangesDisplayToCoinValue(){
+        underTest.acceptCoin("QUARTER");
+        String displayText = testDisplay.getDisplayMessage();
+        assertThat(displayText).isEqualTo("0.25");
+    }
+    @Test
+    public void twoQuartersOneDimeAndOneNickelShouldDisplayCorrectTotal(){
+        underTest.acceptCoin("QUARTER");
+        underTest.acceptCoin("QUARTER");
+        underTest.acceptCoin("NICKEL");
+        underTest.acceptCoin("DIME");
+        String displayText = testDisplay.getDisplayMessage();
+        assertThat(displayText).isEqualTo("0.65");
+    }
 }
